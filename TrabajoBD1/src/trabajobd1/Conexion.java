@@ -7,13 +7,12 @@ public class Conexion {
   
 
     public void conectarBasedeDatos(){
-        try {
-            final String Controlador = "org.postgresql.Driver";
-            Class.forName( Controlador );
+        try {      
             final String url_bd = "jdbc:postgresql://localhost:5432/prueba";
                 conexion = DriverManager.getConnection(url_bd,"postgres","postgres");
             sentencia = conexion.createStatement();
-        } catch (ClassNotFoundException | SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Conectado a la base de datos");
+        } catch ( SQLException ex) {
             JOptionPane.showMessageDialog(null,ex.getMessage(), "Excepcion", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -31,9 +30,7 @@ public class Conexion {
             System.exit(1);
         }
     }
-    public Connection getConnection(){
-        return conexion;
-    }
+   
     public void insertar(String idnuevo){
         try{
        conectarBasedeDatos();
